@@ -33,7 +33,7 @@ RSpec.describe 'Users API' ,type: :request do
     describe "POST user/" do
         before do
              headers = {"accept" => "application/vnd.projetofase8.v1"}
-            post "/users/#{user_id}", params: { user: user_params }, headers: headers
+            post "/users/", params: { user: user_params }, headers: headers
         end
 
         context "when the request params are valid" do
@@ -53,7 +53,7 @@ RSpec.describe 'Users API' ,type: :request do
             let(:user_params){ attributes_for(:user, email: "email_invalid@") }
 
             it "returns status code 422" do
-                expect(response).have_http_status(422)
+                expect(response).to have_http_status(422)
             end  
 
             it "returns the json data for the errors" do
